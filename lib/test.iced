@@ -12,9 +12,9 @@ BAD_X = "\u2716"
 
 exports.File = class File
   constructor : (@name) ->
-
-  new_case : () ->
-    return new Case @
+  new_case : () -> return new Case @
+  default_init : (cb) -> cb true
+  default_destroy : (cb) -> cb true
 
 ##-----------------------------------------------------------------------
 
@@ -78,9 +78,9 @@ exports.Runner = class Runner
 
   ##-----------------------------------------
   
-  load_files : (cb) ->
-    @_dir = path.dirname __filename
-    base = path.basename __filename
+  load_files : (mainfile, cb) ->
+    @_dir = path.dirname mainfile
+    base = path.basename mainfile
     await fs.readdir @_dir, defer err, files
     if err?
       ok = false
@@ -103,8 +103,6 @@ exports.Runner = class Runner
   ##-----------------------------------------
 
   new_file_obj : (fn) -> new File fn
-  default_init : (cb) -> cb true
-  default_destroy : (cb) -> cb true
    
   ##-----------------------------------------
   
@@ -114,7 +112,7 @@ exports.Runner = class Runner
     if code.init?
       await code.init fo, defer err
     else
-      await @default_init defer ok
+      await fo.default_init defer ok
       err = "failed to run default init" unless ok
       
     destroy = code.destroy
@@ -141,7 +139,7 @@ exports.Runner = class Runner
     if destroy?
       await destroy fo, defer()
     else
-      await @default_destroy defer()
+      await fo.default_destroy defer()
       
     cb()
 
@@ -157,8 +155,8 @@ exports.Runner = class Runner
 
   ##-----------------------------------------
 
-  run : (cb) ->
-    await @load_files defer ok
+  run : (mainfile, cb) ->
+    await @load_files mainfile, defer ok
     await @run_files defer() if ok
     @report()
     cb @_rc
@@ -182,9 +180,9 @@ exports.Runner = class Runner
   
 ##-----------------------------------------------------------------------
 
-exports.run = (klass) ->
+exports.run = (klass, mainfile) ->
   runner = new klass()
-  await runner.run defer rc
+  await runner.run mainfile, defer rc
   process.exit rc
 
 ##-----------------------------------------------------------------------
