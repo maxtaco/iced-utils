@@ -180,7 +180,7 @@ exports.Runner = class Runner
   
 ##-----------------------------------------------------------------------
 
-exports.run = (klass, mainfile) ->
+exports.run = (mainfile, klass = Runner) ->
   runner = new klass()
   await runner.run mainfile, defer rc
   process.exit rc
