@@ -40,6 +40,7 @@ exports.Child = class Child
     @proc.stderr.on 'data', (buffer) => @_got_data buffer, 'stderr'
     @proc.stdout.on 'data', (buffer) => @_got_data buffer, 'stdout'
     @proc.on 'exit', (status) => @_got_exit status
+    @pid = @proc.pid
     @
 
   #-----------------------------------------
@@ -54,11 +55,14 @@ exports.Child = class Child
 
   #-----------------------------------------
 
+  toString : () ->
+    "'#{JSON.stringify @args}'" + (if @pid? then " (pid=#{@pid})" else "")
+   
+  #-----------------------------------------
+
   _do_restart : (status) ->
     d = opts?.restart?.delay or 5
-    if (lf = opts?.logfn)?
-      p = JSON.stringify @args
-      lf "process '#{p}' died w/ status=#{status}; restart in #{d}s"
+    opts?.logfn? "process #{@toString()} died w/ status=#{status}; restart in #{d}s"
     await setTimeout defer(), d
     @run()
    
@@ -74,6 +78,7 @@ exports.Child = class Child
     @_exit_cb status if @_exit_cb
     if opts?.restart?
       @_do_restart status
+    @pid = -1
       
   #-----------------------------------------
 
