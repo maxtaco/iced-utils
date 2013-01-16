@@ -54,14 +54,27 @@ exports.Child = class Child
 
   #-----------------------------------------
 
+  _do_restart : (status) ->
+    d = opts?.restart?.delay or 5
+    if (lf = opts?.logfn)?
+      p = JSON.stringify @args
+      lf "process '#{p}' died w/ status=#{status}; restart in #{d}s"
+    await setTimeout defer(), d
+    @run()
+   
+  #-----------------------------------------
+
   _got_exit : (status) ->
     @_exit_code = status
+    @proc = null
     if @_startup?
       cb = @_startup.cb
       cb false
       @_startup = null
     @_exit_cb status if @_exit_cb
-
+    if opts?.restart?
+      @_do_restart status
+      
   #-----------------------------------------
 
   wait : (cb) ->
@@ -72,8 +85,8 @@ exports.Child = class Child
 
 ##-----------------------------------------------------------------------
 
-exports.spawn = (args, cb) ->
-  await (new Child args).run().wait defer status
+exports.spawn = (args, cb, opts = {}) ->
+  await (new Child args, opts).run().wait defer status
   cb status
 
 ##-----------------------------------------------------------------------
