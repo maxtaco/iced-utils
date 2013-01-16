@@ -155,10 +155,17 @@ exports.Runner = class Runner
 
   ##-----------------------------------------
 
+  init : (cb) -> cb true
+  finish : (cb) -> cb true
+  
+  ##-----------------------------------------
+
   run : (mainfile, cb) ->
-    await @load_files mainfile, defer ok
+    await @init defer ok
+    await @load_files mainfile, defer ok  if ok
     await @run_files defer() if ok
     @report()
+    await @finish defer ok
     cb @_rc
    
   ##-----------------------------------------
