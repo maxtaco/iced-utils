@@ -63,7 +63,7 @@ exports.Child = class Child
   _do_restart : (status) ->
     d = opts?.restart?.delay or 5
     opts?.logfn? "process #{@toString()} died w/ status=#{status}; restart in #{d}s"
-    await setTimeout defer(), d
+    await setTimeout defer(), d*1000
     @run()
    
   #-----------------------------------------
