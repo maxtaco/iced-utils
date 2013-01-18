@@ -78,7 +78,13 @@ exports.Runner = class Runner
 
   ##-----------------------------------------
   
-  load_files : (mainfile, cb) ->
+  load_files : (mainfile, whitelist, cb) ->
+    
+    wld = null
+    if whitelist?
+      wld = {}
+      wld[k] = true for k in whitelist
+    
     @_dir = path.dirname mainfile
     base = path.basename mainfile
     await fs.readdir @_dir, defer err, files
@@ -88,7 +94,7 @@ exports.Runner = class Runner
     else
       ok = true
       re = /.*\.(iced|coffee)$/
-      for file in files when file.match(re) and file isnt base
+      for file in files when file.match(re) and (file isnt base) and (not wld? or wld[file])
         @_files.push file
       @_files.sort()
     cb ok
@@ -160,9 +166,9 @@ exports.Runner = class Runner
   
   ##-----------------------------------------
 
-  run : (mainfile, cb) ->
+  run : (mainfile, whitelist, cb) ->
     await @init defer ok
-    await @load_files mainfile, defer ok  if ok
+    await @load_files mainfile, whitelist, defer ok  if ok
     await @run_files defer() if ok
     @report()
     await @finish defer ok
@@ -187,9 +193,9 @@ exports.Runner = class Runner
   
 ##-----------------------------------------------------------------------
 
-exports.run = (mainfile, klass = Runner) ->
+exports.run = (mainfile, klass = Runner, whitelist = null) ->
   runner = new klass()
-  await runner.run mainfile, defer rc
+  await runner.run mainfile, whitelist, defer rc
   process.exit rc
 
 ##-----------------------------------------------------------------------
