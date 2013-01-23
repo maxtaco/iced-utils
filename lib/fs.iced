@@ -4,7 +4,7 @@ fs   = require 'fs'
 
 ##=======================================================================
 
-exports.mkdir_p = (d, mode, cb) ->
+exports.mkdir_p = (d, mode = 0o755, cb) ->
   console.log d
   console.log mode
   console.log cb.toString()
@@ -21,7 +21,6 @@ exports.mkdir_p = (d, mode, cb) ->
       err = "Path component #{d} isn't a directory" unless so.isDirectory()
     else
       await fs.mkdir d, mode, defer err
-      if err
-        err = "In mkdir #{d}: #{err}"
+      err = "In mkdir #{d}: #{err.toString()}" if err?
   cb err
   
