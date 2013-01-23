@@ -5,9 +5,6 @@ fs   = require 'fs'
 ##=======================================================================
 
 exports.mkdir_p = (d, mode = 0o755, cb) ->
-  console.log d
-  console.log mode
-  console.log cb.toString()
   parts = d.split path.sep
   cwd = [ ]
   err = null
