@@ -57,7 +57,7 @@ exports.Case = class Case
 
 ##-----------------------------------------------------------------------
 
-exports.Runner = class Runner
+class Runner
 
   ##-----------------------------------------
   
@@ -69,36 +69,7 @@ exports.Runner = class Runner
     @_rc = 0
     @_n_files = 0
     @_n_good_files = 0
-
-  ##-----------------------------------------
-  
-  err : (e) ->
-    console.log e.red
-    @_rc = -1
-
-  ##-----------------------------------------
-  
-  load_files : (mainfile, whitelist, cb) ->
-    
-    wld = null
-    if whitelist?
-      wld = {}
-      wld[k] = true for k in whitelist
-    
-    @_dir = path.dirname mainfile
-    base = path.basename mainfile
-    await fs.readdir @_dir, defer err, files
-    if err?
-      ok = false
-      @err "In reading #{@_dir}: #{err}"
-    else
-      ok = true
-      re = /.*\.(iced|coffee)$/
-      for file in files when file.match(re) and (file isnt base) and (not wld? or wld[file])
-        @_files.push file
-      @_files.sort()
-    cb ok
-  
+ 
   ##-----------------------------------------
   
   run_files : (cb) ->
@@ -138,9 +109,9 @@ exports.Runner = class Runner
           @err "In #{fn}/#{k}: #{err}"
         else if C.is_ok()
           @_successes++
-          console.log "#{CHECK} #{fn}: #{k}".green
+          @report_good_outcome "#{CHECK} #{fn}: #{k}"
         else
-          console.log "#{BAD_X} #{fn}: #{k}".bold.red
+          @report_bad_outcome "#{BAD_X} #{fn}: #{k}"
           
     if destroy?
       await destroy fo, defer()
@@ -148,6 +119,36 @@ exports.Runner = class Runner
       await fo.default_destroy defer()
       
     cb()
+
+  ##-----------------------------------------
+
+  err : (e, opts = {}) ->
+    opts.red = true
+    @log e, opts
+    @_rc = -1
+
+  ##-----------------------------------------
+
+  report_good_outcome : (txt) ->
+    @log txt, { green : true }
+  report_bad_outcome : (txt) ->
+    @log txt, { red : true, bold : true }
+
+  ##-----------------------------------------
+
+  init : (cb) -> cb true
+  finish : (cb) -> cb true
+ 
+  ##-----------------------------------------
+  
+##-----------------------------------------------------------------------
+
+exports.ServerRunner = class ServerRunner extends Runner
+
+  ##-----------------------------------------
+
+  constructor : () ->
+    super()
 
   ##-----------------------------------------
   
@@ -161,9 +162,56 @@ exports.Runner = class Runner
 
   ##-----------------------------------------
 
-  init : (cb) -> cb true
-  finish : (cb) -> cb true
+  log : (msg, { green, red, bold })->
+    msg = msg.green if green
+    msg = msg.bold if bold
+    msg = msg.red if red
+    console.log msg
+
+  ##-----------------------------------------
   
+  load_files : (mainfile, whitelist, cb) ->
+    
+    wld = null
+    if whitelist?
+      wld = {}
+      wld[k] = true for k in whitelist
+    
+    @_dir = path.dirname mainfile
+    base = path.basename mainfile
+    await fs.readdir @_dir, defer err, files
+    if err?
+      ok = false
+      @err "In reading #{@_dir}: #{err}"
+    else
+      ok = true
+      re = /.*\.(iced|coffee)$/
+      for file in files when file.match(re) and (file isnt base) and (not wld? or wld[file])
+        @_files.push file
+      @_files.sort()
+    cb ok
+   
+  ##-----------------------------------------
+
+  report : () ->
+    if @_rc < 0
+      @err "#{BAD_X} Failure due to test configuration issues"
+    @_rc = -1 unless @_tests is @_successes
+
+    opts = if @_rc is 0 then { green : true } else { red : true }
+    opts.bold = true
+
+    @log "Tests: #{@_successes}/#{@_tests} passed", opts
+    
+    if @_n_files isnt @_n_good_files
+      @err " -> Only #{@_n_good_files}/#{@_n_files} files ran properly", { bold : true }
+    return @_rc
+
+  #-------------------------------------
+
+  report_good_outcome : (msg) -> console.log msg.green
+  report_bad_outcome  : (msg) -> console.log msg.bold.red
+
   ##-----------------------------------------
 
   run : (mainfile, whitelist, cb) ->
@@ -172,28 +220,43 @@ exports.Runner = class Runner
     await @run_files defer() if ok
     @report()
     await @finish defer ok
-    cb @_rc
-   
-  ##-----------------------------------------
+    cb @_rc   
 
-  report : () ->
-    if @_rc < 0
-      console.log "#{BAD_X} Failure due to test configuration issues".red
-    @_rc = -1 unless @_tests is @_successes
-    f = if @_rc is 0 then colors.green else colors.red
-    
-    console.log f "Tests: #{@_successes}/#{@_tests} passed".bold
-    
-    if @_n_files isnt @_n_good_files
-      console.log (" -> Only #{@_n_good_files}/#{@_n_files}" + 
-         " files ran properly").red.bold
-    return @_rc
-    
-  ##-----------------------------------------
-  
 ##-----------------------------------------------------------------------
 
-exports.run = (mainfile, klass = Runner, whitelist = null) ->
+exports.BrowserRunner = class BrowserRunner extends Runner
+
+  constructor : ({@text, @rc}) ->
+    super()
+
+  ##-----------------------------------------
+
+  log : (m) ->
+    window.document.getElementById(@text).innerHTML += m
+
+  ##-----------------------------------------
+
+  err : (e) ->
+    @log "<p><font color=red>#{e}</font></p>" 
+    @_rc = -1
+  report_good_outcome : (msg) ->
+    @log "<p><font color=green>#{msg}</font></p>"
+  report_bad_outcome : (msg) ->
+    @log "<p><font color=red><b>#{msg}</b></font></p>"
+
+  ##-----------------------------------------
+
+  run : (modules, cb) ->
+    await @init defer ok
+    for k,v of modules when not v.skip
+      await @run_code k, v, defer ok
+    @report()
+    await @finish defer ok
+    cb @_rc
+
+##-----------------------------------------------------------------------
+
+exports.run = (mainfile, klass = ServerRunner, whitelist = null) ->
   runner = new klass()
   await runner.run mainfile, whitelist, defer rc
   process.exit rc
