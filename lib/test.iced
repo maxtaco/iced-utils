@@ -224,25 +224,26 @@ exports.ServerRunner = class ServerRunner extends Runner
 
 ##-----------------------------------------------------------------------
 
+$ = (m) -> window.document.getElementById(m)
+
+##-----------------------------------------------------------------------
+
 exports.BrowserRunner = class BrowserRunner extends Runner
 
-  constructor : ({@text, @rc}) ->
+  constructor : (@divs) ->
     super()
 
   ##-----------------------------------------
 
-  log : (m) ->
-    window.document.getElementById(@text).innerHTML += m
-
-  ##-----------------------------------------
-
-  err : (e) ->
-    @log "<p><font color=red>#{e}</font></p>" 
-    @_rc = -1
-  report_good_outcome : (msg) ->
-    @log "<p><font color=green>#{msg}</font></p>"
-  report_bad_outcome : (msg) ->
-    @log "<p><font color=red><b>#{msg}</b></font></p>"
+  log : (m, {red, green, bold}) ->
+    style = 
+      margin : "0px"
+    style.color = "green" if green
+    style.color = "red" if red
+    style.weight = "bold" if bold
+    style_tag = ("k: #{v}" for k,v of style).join "; "
+    tag = "<p style=\"#{style_tag}\">#{m}</p>\n"
+    $(@divs.log).innerHTML += tag
 
   ##-----------------------------------------
 
@@ -252,6 +253,7 @@ exports.BrowserRunner = class BrowserRunner extends Runner
       await @run_code k, v, defer ok
     @report()
     await @finish defer ok
+    $(@divs.rc).innertHTML = @_rc
     cb @_rc
 
 ##-----------------------------------------------------------------------
