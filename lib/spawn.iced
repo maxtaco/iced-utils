@@ -35,8 +35,8 @@ exports.Child = class Child
     
   #-----------------------------------------
 
-  run : () ->
-    @proc = spawn 'iced', @args
+  run : (interp = 'iced') ->
+    @proc = spawn interp, @args
     @proc.stderr.on 'data', (buffer) => @_got_data buffer, 'stderr'
     @proc.stdout.on 'data', (buffer) => @_got_data buffer, 'stdout'
     @proc.on 'exit', (status) => @_got_exit status
