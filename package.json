@@ -12,6 +12,7 @@
     "lib": "lib/"
   },
   "dependencies" : {
+    "iced-coffee-script" : ">=1.6.3-i"
   },
   "licenses": [{
       "type": "MIT",
