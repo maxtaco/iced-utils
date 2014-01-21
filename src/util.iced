@@ -180,3 +180,13 @@ exports.assert_no_nulls = assert_no_nulls = (v) ->
     assert false
 
 #=========================================================
+
+# Chain callback cb1 and cb2.
+# Call cb1 first, and throw away whatever it calls back with.
+# Then call cb2, and pass it the args the chain was called back
+# with.  This is useful for doing a cleanup routine before 
+# something exits.
+exports.chain = (cb2, cb1) -> (args...) -> cb1 () -> cb2 args...
+
+#=========================================================
+
