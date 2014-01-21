@@ -4,22 +4,22 @@ fs   = require 'fs'
 
 ##=======================================================================
 
-exports.mkdir_p = (d, mode = 0o755, cb) ->
+exports.mkdir_p = mkdir_p = (d, mode = 0o755, cb) ->
   parts = d.split path.sep
   cwd = [ ]
+  if (parts.length and (parts[0].length is 0)) then cwd.push path.sep
   err = null
   made = 0
+
   for p in parts when not err?
     cwd.push p
     d = path.join.apply null, cwd
     await fs.stat d, defer err, so
-    if err? and err.code isnt 'ENOENT'
-      err = "In directory #{d}: #{err.toString()}"
-    else if so?
-      err = "Path component #{d} isn't a directory" unless so.isDirectory()
-    else
+    if err? and (err.code is 'ENOENT')
       await fs.mkdir d, mode, defer err
-      made++
-      err = "In mkdir #{d}: #{err.toString()}" if err?
+      made++ unless err?
+    else if not err? and so? and not so.isDirectory()
+      err = new Error "Path component #{d} isn't a directory"
   cb err, made
   
+##=======================================================================
