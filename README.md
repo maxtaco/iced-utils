@@ -1,4 +1,4 @@
 iced-utils
 ==========
 
-Simple testing framework and other utilities; helpful for all iced projects.
+Simple tools and libraries that are useful in a lot of iced projects, bundled together for now.
