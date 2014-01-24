@@ -11,6 +11,7 @@ lib/%.js: src/%.iced
 
 $(BUILD_STAMP): \
 	lib/fs.js \
+        lib/getopt.js \
 	lib/lock.js \
 	lib/main.js \
 	lib/spawn.js \
