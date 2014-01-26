@@ -30,7 +30,7 @@ class NamedLock extends Lock
   release : ->
     super()
     if @decref() is 0
-      delete @tab[@name]
+      delete @tab.locks[@name]
 
 ##-----------------------------------------------------------------------
 
