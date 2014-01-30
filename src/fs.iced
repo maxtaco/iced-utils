@@ -24,7 +24,7 @@ exports.mkdir_p = mkdir_p = (d, mode = 0o755, cb) ->
   
 ##=======================================================================
 
-exports.rm_rf = rm_rf = (d, cb) ->
+exports.rm_r = rm_r = (d, cb) ->
   await fs.readdir d, defer err, files
   unless err?
     for file in files when not (file in [".", ".."])
@@ -32,7 +32,7 @@ exports.rm_rf = rm_rf = (d, cb) ->
       await fs.stat full, defer err, stat
       if err? then #noop
       else if stat.isDirectory()
-        await rm_rf full, defer err
+        await rm_r full, defer err
       else 
         await fs.unlink full, defer err
       break if err?
@@ -42,4 +42,3 @@ exports.rm_rf = rm_rf = (d, cb) ->
 
 ##=======================================================================
 
-await rm_rf process.argv[2], defer err
