@@ -23,3 +23,23 @@ exports.mkdir_p = mkdir_p = (d, mode = 0o755, cb) ->
   cb err, made
   
 ##=======================================================================
+
+exports.rm_rf = rm_rf = (d, cb) ->
+  await fs.readdir d, defer err, files
+  unless err?
+    for file in files when not (file in [".", ".."])
+      full = path.join(d, file)
+      await fs.stat full, defer err, stat
+      if err? then #noop
+      else if stat.isDirectory()
+        await rm_rf full, defer err
+      else 
+        await fs.unlink full, defer err
+      break if err?
+  unless err?
+    await fs.rmdir d, defer err
+  cb err
+
+##=======================================================================
+
+await rm_rf process.argv[2], defer err
