@@ -74,17 +74,20 @@ exports.Child = class Child
   #-----------------------------------------
 
   _got_exit : (status) ->
-    @_exit_code = status if status?
-    @proc = null
-    if @_startup?
-      cb = @_startup.cb
-      cb false
-      @_startup = null
+    if status?
+      @_exit_code = status
+      @proc = null
+      if @_startup?
+        cb = @_startup.cb
+        cb false
+        @_startup = null
+      @pid = -1
     if --@_n_exits is 0 
-      @_exit_cb status if @_exit_cb
+      if (ecb = @_exit_cb)
+        @_exit_cb = null
+        ecb @_exit_code 
       if opts?.restart?
         @_do_restart status
-    @pid = -1
       
   #-----------------------------------------
 
