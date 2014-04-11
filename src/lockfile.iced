@@ -22,12 +22,12 @@ read_all = (fd, cb) ->
   until err? or eof
     b = new Buffer l
     await fs.read fd, b, 0, l, null, defer err, nbytes
-    if not err? then # noop
-    else if nbytes = 0
+    if err? then # noop
+    else if nbytes is 0 then eof = true
     else
       b = b[0...nbytes]
       bufs.push b
-  cb err,  Buffer.concat(b)
+  cb err, Buffer.concat(bufs)
 
 #==========================================================================
 
@@ -86,7 +86,8 @@ class Lockfile
       err = new Error "Bad lock file; expected an array with 2 values"
     else if (Date.now() - jso[0]) < @poke_timeout then # noop, still locked?
     else if jso[1] is @id
-      await @fs.unlink @filename, esc defer()
+      await fs.unlink @filename, esc defer()
+    else
       obj = @_lock_dat() 
       await fs.writeFile @filename, obj, { encoding : 'utf8', @mode}, esc defer()
     cb null
