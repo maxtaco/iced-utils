@@ -12,7 +12,7 @@
     "lib": "lib/"
   },
   "devDependencies": {
-    "iced-coffee-script": "~1.6.3-j"
+    "iced-coffee-script": "~1.7.1-b"
   },
   "licenses": [
     {
