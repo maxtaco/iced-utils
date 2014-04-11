@@ -109,6 +109,7 @@ class Lockfile
   acquire : (cb) ->
     acquired = false
     start = Date.now()
+    err = null
     loop
       await @_acquire_1 defer acquired, unlinked
       break if acquired
@@ -116,7 +117,9 @@ class Lockfile
       await setTimeout defer(), @retry_interval unless unlinked
     if acquired
       @maintain_lock_loop()
-    cb acquired
+    unless acquired
+      err = new Error "failed to acquire lock"
+    cb err
 
   #--------------------
 
