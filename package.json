@@ -19,5 +19,8 @@
       "type": "MIT",
       "url": "http://www.opensource.org/licenses/mit-license.php"
     }
-  ]
+  ],
+  "dependencies": {
+    "iced-error": "0.0.8"
+  }
 }

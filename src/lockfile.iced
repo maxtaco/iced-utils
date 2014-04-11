@@ -70,7 +70,9 @@ class Lockfile
 
   #--------------------
 
-  _lock_dat : () -> JSON.stringify [ Date.now(), @id, process.pid ]
+  _lock_dat : () -> 
+    s = JSON.stringify [ Date.now(), @id, process.pid ]
+    new Buffer s, 'utf8'
 
   #--------------------
 
@@ -116,9 +118,9 @@ class Lockfile
 
   maintain_wait : (cb) ->
     rv = new iced.Rendezvous()
-    @_maintain_cb = rv.defer()
-    setTimeout rv.defer(), @poke_interval
-    await rv.wait defer()
+    @_maintain_cb = rv.id(true).defer()
+    setTimeout rv.id(false).defer(), @poke_interval
+    await rv.wait defer which
     cb()
 
   #--------------------
@@ -140,4 +142,11 @@ class Lockfile
 exports.Lockfile = Lockfile
 
 #==========================================================================
+
+lock = new Lockfile { filename : "/tmp/shit" }
+console.log "acquire...."
+await lock.acquire defer t
+console.log t
+await setTimeout defer(), 10000
+
 
