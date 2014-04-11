@@ -108,7 +108,7 @@ class Lockfile
 
   #--------------------
 
-  unlock : () ->
+  release : () ->
     if @_locked
       @_locked = false
       @_maintain_cb?()
@@ -148,6 +148,9 @@ lock = new Lockfile { filename : "/tmp/shit" }
 console.log "acquire...."
 await lock.acquire defer t
 console.log t
-await setTimeout defer(), 10000
+await setTimeout defer(), 1000
+lock.release()
+await setTimeout defer(), 100
+process.exit 1
 
 
