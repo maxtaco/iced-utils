@@ -131,7 +131,7 @@ exports.json_stringify_sorted = (o, opts) ->
           sp   = space_it(depth)
           spp  = space_it(depth+1)
           keys = (k for k of os)
-          if sort_fn
+          if sort_fn?
             keys.sort sort_fn
           else
             keys.sort()
