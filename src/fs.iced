@@ -21,7 +21,7 @@ exports.mkdir_p = mkdir_p = (d, mode = 0o755, cb) ->
     else if not err? and so? and not so.isDirectory()
       err = new Error "Path component #{d} isn't a directory"
   cb err, made
-  
+
 ##=======================================================================
 
 exports.rm_r = rm_r = (d, cb) ->
