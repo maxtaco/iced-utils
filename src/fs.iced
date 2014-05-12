@@ -1,6 +1,9 @@
 
-path = require 'path'
-fs   = require 'fs'
+path   = require 'path'
+fs     = require 'fs'
+os     = require 'os'
+util   = require './util'
+{prng} = require 'crypto'
 
 ##=======================================================================
 
@@ -39,6 +42,20 @@ exports.rm_r = rm_r = (d, cb) ->
   unless err?
     await fs.rmdir d, defer err
   cb err
+
+##=======================================================================
+
+exports.write_tmp_file = ({data, dir, base, mode, encoding, suffix_len}, cb) ->
+  suffix_len or= 12
+  mode or= 0o644
+  encoding or= 'utf8'
+  dir or= os.tmpdir()
+  flag = "wx"
+  sffx = util.base64u.encode prng(suffix_len)
+  fn = path.join dir, [base, sffx].join(".")
+  opts =  { mode, encoding, flag }
+  await fs.writeFile fn, data, opts, defer err
+  cb err, fn
 
 ##=======================================================================
 
