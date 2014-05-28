@@ -233,9 +233,9 @@ exports.dict_merge = (args...) ->
   m = (y, x) ->
     for k,v1 of x
       v2 = y[k]
-      if isdict(v1) and isdict(v2) then m(v2, v1)
+      if not isdict(v1) then y[k] = v1
+      else if isdict(v2) then m(v2, v1)
       else y[k] = clone v1
-
   out = {}
   for d in args
     m(out, d)
