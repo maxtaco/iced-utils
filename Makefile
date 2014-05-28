@@ -29,6 +29,7 @@ setup:
 	npm install -d
 
 test:
+	iced test/run.iced
 
 .PHONY: test setup
 

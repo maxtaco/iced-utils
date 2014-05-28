@@ -205,3 +205,28 @@ exports.chain = (cb2, cb1) -> (args...) -> cb1 () -> cb2 args...
 
 #=========================================================
 
+exports.dict_union = dict_union = (args...) ->
+  out = {}
+  for d in args
+    out[k] = v for k,v of d
+  return out
+
+#=========================================================
+
+exports.dict_merge = (args...) ->
+
+  isdict = (x) -> x and (typeof(x) is 'object') and not(Array.isArray(x))
+
+  m = (y, x) ->
+    for k,v1 of x
+      v2 = y[k]
+      if isdict(v1) and isdict(v2) then m(v2, v1)
+      else y[k] = v1
+
+  out = {}
+  for d in args
+    m(out, d)
+  return out
+
+#=========================================================
+
