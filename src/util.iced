@@ -205,6 +205,8 @@ exports.chain = (cb2, cb1) -> (args...) -> cb1 () -> cb2 args...
 
 #=========================================================
 
+# Take a union of the n dictionaries, from left to right.
+# Last writer wins, with no recursion
 exports.dict_union = dict_union = (args...) ->
   out = {}
   for d in args
@@ -213,15 +215,26 @@ exports.dict_union = dict_union = (args...) ->
 
 #=========================================================
 
+# Merge the n dictionaries, from left to right.
+# Last writer wins, with recursion.
 exports.dict_merge = (args...) ->
 
   isdict = (x) -> x and (typeof(x) is 'object') and not(Array.isArray(x))
+
+  clone = (x) ->
+    if typeof(x) isnt 'object' then x
+    else if Array.isArray(x) then x[0...]
+    else
+      out = {}
+      for k,v of x
+        out[k] = clone(v)
+      return out
 
   m = (y, x) ->
     for k,v1 of x
       v2 = y[k]
       if isdict(v1) and isdict(v2) then m(v2, v1)
-      else y[k] = v1
+      else y[k] = clone v1
 
   out = {}
   for d in args

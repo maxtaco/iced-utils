@@ -1,5 +1,5 @@
 
-{dict_merge} = require('../../lib/main').util
+{dict_union,dict_merge} = require('../../lib/main').util
 
 exports.test_1 = (T,cb) ->
   d1 = 
@@ -50,6 +50,18 @@ exports.test_1 = (T,cb) ->
       fish :
         goat : 11
   T.equal d6, d7, "second merge came back"
+  d8 = dict_union d1, d2
+  d9 = 
+    ant : 5
+    bar :
+      baz :
+        donkey : 12
+      cudgle : 10
+    cow : 9
+    eel : 
+      fish :
+        goat : 11
+  T.equal d8, d9, "dict union came back"
   cb()
 
 
