@@ -219,7 +219,7 @@ exports.dict_union = dict_union = (args...) ->
 # Last writer wins, with recursion.
 exports.dict_merge = (args...) ->
 
-  isdict = (x) -> x and (typeof(x) is 'object') and not(Array.isArray(x))
+  isdict = (x) -> x and (typeof(x) is 'object') and not(Array.isArray(x)) and not(Buffer.isBuffer(x))
 
   clone = (x) ->
     if typeof(x) isnt 'object' then x
