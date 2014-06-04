@@ -22,8 +22,10 @@
       "url": "http://www.opensource.org/licenses/mit-license.php"
     }
   ],
+  "devDependencies" : {
+    "iced-coffee-script": "^1.7.1-c"
+  },
   "dependencies": {
-    "iced-coffee-script": "^1.7.1-c",
     "iced-error": ">=0.0.8",
     "iced-runtime": "0.0.1"
   }

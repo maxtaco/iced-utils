@@ -1,4 +1,10 @@
-## 0.1.16 
+## 0.1.17 (2014-06-04)
+
+Bugfixes:
+
+  - Fix broken dev/dependencies
+
+## 0.1.16 (2014-06-04)
 
 Features:
 
