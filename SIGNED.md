@@ -4,13 +4,13 @@
 Version: GnuPG/MacGPG2 v2.0.22 (Darwin)
 Comment: GPGTools - https://gpgtools.org
 
-iQEcBAABCgAGBQJTjy4HAAoJEJgKPw0B/gTfvj8H/0gOvgQEY8dQo0eqiFjopZGE
-JLFYti/ocHohLrPUmvJSbbnLQ5NpCWL4un3e/Fa1o4Z/benFuaWZv29DatL56iZ1
-HtGbG/cParSVeKUAZg0a592x90BgmJEdl3akKtV/6Zxfz5cf24kqFfxDbEslnfQz
-Gkixel2kEkWbqxThTE2rgcaUdirUtxetm+KgiKVASad03xTwIeeNNYRfAxYfrPOT
-NVSLeqhcCbug4eq0UeBSijKZvH+AniwkDTsNnObbF5cNl4IWo9U7kRnMoBrB95dG
-EVRO9jtJtOfeeJvkiOKzNGltbKvlO+ebmKM88vGskbdSDeXzCnQVKp9u0C8jNGE=
-=sin/
+iQEcBAABCgAGBQJTjzsNAAoJEJgKPw0B/gTfWBgH/2VSdn8/49WB027emBFufCek
+uJmgdSrIVlYEMQdq8tVaBqXxn2wWbK6LuT7GaM3LBSA2ZwdsJgC46c31jAkt92sv
+Tp709gyvH/QRPKjbtBb3oDk47gyogIZFG8J8ONLsH6BGCgw+0eSTXxvJFX2O5jkI
+MPsjqfxa1A7tLtwqmwTd/eszelE85AHya1twC/NHeTSoC8kt3SlZrpaO98pmyBej
+9iwNt0bmq1vYEtUojSUA47N/RH4hWf5ssYdm1zmfjjioRWWpwx6SIYWFW0nmrjTp
+mHFJoflwNJu6Ot9+ic4e2fIrIXKm+XhlE3UjYLLaEF2UqdiqJDjDgAT6gsU+nbM=
+=HobL
 -----END PGP SIGNATURE-----
 
 ```
@@ -25,7 +25,7 @@ EVRO9jtJtOfeeJvkiOKzNGltbKvlO+ebmKM88vGskbdSDeXzCnQVKp9u0C8jNGE=
 size   exec  file                   contents                                                        
              ./                                                                                     
 110            .gitignore           71f9c0f0263e54e773253b0ff92e43970e8288db495d9638ac2bfecee2d2f43b
-180            CHANGELOG.md         a3eb7d7ec4f833147ac2965cb2487d721f27b2c10b48f50ba7207a6b7cd7ffab
+260            CHANGELOG.md         344871ae5af51fd1252b1de2125d7284717754483eb029919709b708cb054ae3
 472            Makefile             28a56695d3682dc3e54cd3a6140042eb5c2a67e2b6530c3877b0acd552d0f931
 119            README.md            631d836cb2b1e05957d9da1eb7d7e5dd2db3ce83edc6d5f8d1f8dd84c0ca5e96
                lib/                                                                                 
@@ -37,7 +37,7 @@ size   exec  file                   contents
 342              main.js            b4a444570c61f28e83494fe5ba082a6a72876fe130820f80e612c3482bbbfb9b
 5492             spawn.js           fdd6367e1ad33a04f235c02fa0fbeeff81df1ded2dfeac6571fb7236da25497d
 9384             util.js            0315d568296484e20f91f97e07faea1b1f5990ec90b0e2cb44b0b94f54d547ad
-692            package.json         c86cabc39f765930a5dc7f5a4766206b7d5206530a505afdbc75172d872eccd3
+601            package.json         8c1d24b06084e60d7affe438ffca2c455bd595e744815a5228e518417e395628
                src/                                                                                 
 275              enum.iced          189271c330eb6db654879469828332cf78ea87e210d1d7275611a2e1e1fb4d15
 1756             fs.iced            205ad199023ba430ce4b6771913424f0872c90ed79afc13cc919159653e389ad

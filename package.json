@@ -1,6 +1,6 @@
 {
   "name": "iced-utils",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "Simple utils for all IcedCoffeeScript projects",
   "homepage": "https://github.com/maxtaco/iced-utils",
   "main": "./lib/main",
@@ -12,9 +12,7 @@
     "lib": "lib/"
   },
   "devDependencies": {
-    "iced-coffee-script": "~1.7.1-b",
-    "iced-test": "0.0.15",
-    "minimist": "^0.1.0"
+    "iced-coffee-script": "^1.7.1-c"
   },
   "licenses": [
     {
@@ -22,9 +20,6 @@
       "url": "http://www.opensource.org/licenses/mit-license.php"
     }
   ],
-  "devDependencies" : {
-    "iced-coffee-script": "^1.7.1-c"
-  },
   "dependencies": {
     "iced-error": ">=0.0.8",
     "iced-runtime": "0.0.1"
