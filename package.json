@@ -1,6 +1,6 @@
 {
   "name": "iced-utils",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "Simple utils for all IcedCoffeeScript projects",
   "homepage": "https://github.com/maxtaco/iced-utils",
   "main": "./lib/main",
