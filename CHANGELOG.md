@@ -1,5 +1,9 @@
 ## 0.1.16 
 
+Features:
+
+  - IcedCoffeeScript upgrade to v1.7.1-c
+
 Bugfixes:
 
   - Don't consider Buffers as objects

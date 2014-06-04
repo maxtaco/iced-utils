@@ -23,6 +23,8 @@
     }
   ],
   "dependencies": {
-    "iced-error": ">=0.0.8"
+    "iced-coffee-script": "^1.7.1-c",
+    "iced-error": ">=0.0.8",
+    "iced-runtime": "0.0.1"
   }
 }
