@@ -12,6 +12,7 @@ lib/%.js: src/%.iced
 $(BUILD_STAMP): \
 	lib/enum.js \
 	lib/fs.js \
+        lib/gets.js \
 	lib/getopt.js \
 	lib/lock.js \
 	lib/lockfile.js \

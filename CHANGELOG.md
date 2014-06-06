@@ -1,3 +1,9 @@
+## 0.1.18
+
+Features:
+
+  - A C-style fgets class, for conveniently awating on stdin (or file) line-by-line
+
 ## 0.1.17 (2014-06-04)
 
 Bugfixes:
