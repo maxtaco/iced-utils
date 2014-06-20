@@ -4,13 +4,13 @@
 Version: GnuPG/MacGPG2 v2.0.22 (Darwin)
 Comment: GPGTools - https://gpgtools.org
 
-iQEcBAABCgAGBQJTjz0OAAoJEJgKPw0B/gTfmQwH/iKnBmC6wenG2VuXwZB6ouOF
-akxUjZBVSSdquyYX3Eqi2yAwCFa+WSoCwDn4ynQd17HeS5NwKxH0tA7eWAE3cDBT
-KO2sa9uiClnnWN1zMRi599W6CR1fiiuAqaGia+glCUQA95naqbCQVKlT6cw/T+Y8
-17pcHC8w7KpXdHrjKbBstcsVad/dSHo3oBsV0DBWcjBjb3hcyJX1S/5peqRLdiuX
-WqR/2vQH9NEe6mxrZA73h4SkeJ9EBJWubfko69xfXNN+mPa/zvgT7mrYC2if3ZiN
-tqNnLSAndlgj+/daYD2on9tUcYkm70HHAdbeyCXMiqkxgTXjsR9RLCOGPnNdBxk=
-=RHfI
+iQEcBAABCgAGBQJTpInAAAoJEJgKPw0B/gTf1NoH/3C6qhU6VgxHkAB4LVgRgNfL
+ZGbqTmrGMr49OndpRQGaBrddBaRKdUaBh7CAByyLB/VmRV1whlrauzILVvI+qn5i
+ZcJwhhn/4n85j6TyytDFRwQMf5X1TPYtbBdt6DWcJ6YK+yQoH19663Mb9YUqQJBy
+VQBDMtewRYABBFfi7yHwwYBBzNB86IidO8Fn1D94GNP2ojEFWwIku+uRHE6DKaGr
+TEwyI6CdZqZ8R8fIjpFWKGqU+hQ/FuMbjkLmrTgiV2RDDbrbb2qnlxBl8vLe9l6Y
+9FwlmzD6MaNMLWDiiun8UZ/76jG8nOBOBmkGIpriuzd80L7mG5o2OwN4vgmPdDc=
+=tzNV
 -----END PGP SIGNATURE-----
 
 ```
@@ -25,26 +25,28 @@ tqNnLSAndlgj+/daYD2on9tUcYkm70HHAdbeyCXMiqkxgTXjsR9RLCOGPnNdBxk=
 size   exec  file                   contents                                                        
              ./                                                                                     
 110            .gitignore           71f9c0f0263e54e773253b0ff92e43970e8288db495d9638ac2bfecee2d2f43b
-260            CHANGELOG.md         344871ae5af51fd1252b1de2125d7284717754483eb029919709b708cb054ae3
-472            Makefile             28a56695d3682dc3e54cd3a6140042eb5c2a67e2b6530c3877b0acd552d0f931
+450            CHANGELOG.md         ff18b011f36c1c97e1ad38c6881f1d156caa1c94f95561e00e149e602ad59732
+494            Makefile             fd714e7fc50aba165cd6626fda3fdeb45c97602115034a5e881bcc42abde1f42
 119            README.md            631d836cb2b1e05957d9da1eb7d7e5dd2db3ce83edc6d5f8d1f8dd84c0ca5e96
                lib/                                                                                 
 360              enum.js            d22333c1a5e72e0978dc301447aa4e285144f49bdd08e631836e1da5c57b2877
 11420            fs.js              0983493f7c1850b57d007a2d30d6d96c74da3575298f6df6d693f76330ec97fc
 1935             getopt.js          7019aac910b460cedff284214edbda2c9abf77f426b4e6328ef21fc0d1a48b6f
+2684             gets.js            3a1079865745407c40aba3349a4bf92f7440015d1e8a62b731e5ee296673243b
 3192             lock.js            c61d1fc71c496ee0ec7985954fbe9c1946062e30ab68417d35e4c37113977f8f
 19414            lockfile.js        c6aa2fa7e2cc2d97fbd03a1da8690fd729824cd4298ee1636841dd3053aff932
-342              main.js            b4a444570c61f28e83494fe5ba082a6a72876fe130820f80e612c3482bbbfb9b
+384              main.js            fb06f1b6e6fdbd6ecbd5b448376e18c27e2147f04bdc0f7c49a79226ada69e1d
 5492             spawn.js           fdd6367e1ad33a04f235c02fa0fbeeff81df1ded2dfeac6571fb7236da25497d
 9384             util.js            0315d568296484e20f91f97e07faea1b1f5990ec90b0e2cb44b0b94f54d547ad
-601            package.json         17c83432508be5beb7cbc7667e7897eb987e0fcdb500b867d5990725f89ed3b9
+665            package.json         baa6fbd69756c80962d398728368e569d02c8222f31e6f5d2d84ee20d0e601be
                src/                                                                                 
 275              enum.iced          189271c330eb6db654879469828332cf78ea87e210d1d7275611a2e1e1fb4d15
 1756             fs.iced            205ad199023ba430ce4b6771913424f0872c90ed79afc13cc919159653e389ad
 1108             getopt.iced        ecea3528970970453687a0ac7b10c943d37e4df861a345a7bb6faee238032cdd
+2081             gets.iced          e289a75c4d10cba1f7e156df5637b3e0989c0ebefd2842b3262988347de4787b
 1123             lock.iced          00e0aad9cbe1aac2031640a78d7f6a71e05975af1850b815311f9290f9ce2fd9
 5009             lockfile.iced      4965dea73b8739ab499704c8213f9d4c875f7271907e41ebd0ea90c79db35aa4
-235              main.iced          762afb6b67105bbc8347b0ca3295ca3f57435fd31040a5be9f74ceba1861c8d5
+273              main.iced          2836127cc469029a7f59d991bf0ae85716827e5060c01f236e566ad52d7234eb
 2621             spawn.iced         c8f801be169434cf2a6dd8650f12d71c3656e098d3ca6b8f3234c47b1e497997
 6749             util.iced          7182d3bee726b091b20bad5c7091e241f5c1d10606f85e66892b5c3f85b80a33
                test/                                                                                
@@ -67,7 +69,7 @@ dropbox  # ignore .dropbox-cache and other Dropbox-related files
 kb       # ignore anything as described by .kbignore files          
 ```
 
-<!-- summarize version = 0.0.8 -->
+<!-- summarize version = 0.0.9 -->
 
 ### End signed statement
 
