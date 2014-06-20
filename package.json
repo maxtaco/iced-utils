@@ -12,7 +12,9 @@
     "lib": "lib/"
   },
   "devDependencies": {
-    "iced-coffee-script": "^1.7.1-c"
+    "iced-coffee-script": "^1.7.1-c",
+    "minimist": "^0.2.0",
+    "iced-test": "0.0.17"
   },
   "licenses": [
     {
@@ -22,6 +24,6 @@
   ],
   "dependencies": {
     "iced-error": ">=0.0.8",
-    "iced-runtime": "0.0.1"
+    "iced-runtime": ">=0.0.1 <2.0.0-0"
   }
 }

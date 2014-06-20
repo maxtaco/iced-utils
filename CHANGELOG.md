@@ -1,4 +1,10 @@
-## 0.1.18
+## 0.1.19 (2014-06-20)
+
+Bugfixes
+
+  - More flexible iced-runtime dep
+
+## 0.1.18 (2014-06-04)
 
 Features:
 
