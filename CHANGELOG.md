@@ -1,3 +1,9 @@
+## 0.1.20
+
+Features:
+
+  - Drain a stream into a buffer
+
 ## 0.1.19 (2014-06-20)
 
 Bugfixes
