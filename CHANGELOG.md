@@ -1,3 +1,9 @@
+## 0.1.21 (2014-07-08)
+
+Features:
+
+  - xxd format of binary buffers (like the Unix xxd)
+
 ## 0.1.20 (2014-06-23)
 
 Features:
