@@ -2,15 +2,15 @@
 ```
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG/MacGPG2 v2.0.22 (Darwin)
-Comment: GPGTools - https://gpgtools.org
+Comment: GPGTools - http://gpgtools.org
 
-iQEcBAABCgAGBQJTqHKLAAoJEJgKPw0B/gTfIIcIAKYKsG3L/uERb4bTq9rHb0DK
-HXVthmrp2qUme2LcHcGtwxzxC7euRe1Q+vVmvJ7d6z5NL2D0mlE1JRLuRlFKXLCD
-VHYIPVPBm1TBU2XbszHQeSZ2bmNtjTQP8EShKAT+XFP2k3i48jP4bM0LXNc2Wsgj
-KI7cM66LRJ3NLWJ05kzgUvi8Vk7lr3drnBGhi0ZQkQ3cBq/xVett390GZrzeFJuO
-vtdV4o+xIWzRAiOE1lybFzW7fqm6VwrkWVc5EeK5CdEMY88ZuSxEvSNzKgwVe0ob
-Du9vtVFZM0VavPJ1tLmyvN3gZz5vdepbMEx8SOt3Xr+JS8TAIlfq3jB2PT0QFaU=
-=h+Ie
+iQEcBAABAgAGBQJTvDiWAAoJEJgKPw0B/gTfhZUIAMutda6p35fVUqrXLOWFRIX7
+SnBHDtQvlfsHB3y/qwi3hzqRQb3hvLpxgQmxBuobDrjw2FIfCQcxh5dP2n+8uNTj
+Art+xqRlnlfF7nhWn6cFoNq6JCixGbF3sMoQ8GUB1HeqRImlGQOgmDQMvHzzEzvK
+VaqL9LnF87+xESWwtECqSs1TL6iGO6Dg3DuRu9+tUDY7FMsswZH6UR4CHknIyAzF
+dZuDLv5mX8MsFBBGCbQM5xlSq+NI7PD2bRkFMRUTItW0lnDsLtxMwjjD8jxVDo47
+EkfeDO8xgatjEEEOM/NQx4LmTcGIMlAruNvazPed+Lkn6cTgZCUA36srXTdEYDM=
+=yZ/6
 -----END PGP SIGNATURE-----
 
 ```
@@ -25,7 +25,7 @@ Du9vtVFZM0VavPJ1tLmyvN3gZz5vdepbMEx8SOt3Xr+JS8TAIlfq3jB2PT0QFaU=
 size   exec  file                   contents                                                        
              ./                                                                                     
 110            .gitignore           71f9c0f0263e54e773253b0ff92e43970e8288db495d9638ac2bfecee2d2f43b
-519            CHANGELOG.md         7145b5c802197b2ee4176626a8ab8e2f9c11ef1bcf73ebdbc33cae00b34e93a0
+608            CHANGELOG.md         abd1d6b8dcc0a66e73d565c4db3c816d8a5b5decc12457fdaadad966770f4fc6
 506            Makefile             ffccd2051ddad6b7c95582f8f218abcb160761fdcb24a76395a54947cb5ad77b
 119            README.md            631d836cb2b1e05957d9da1eb7d7e5dd2db3ce83edc6d5f8d1f8dd84c0ca5e96
                lib/                                                                                 
@@ -38,8 +38,8 @@ size   exec  file                   contents
 19414            lockfile.js        c6aa2fa7e2cc2d97fbd03a1da8690fd729824cd4298ee1636841dd3053aff932
 423              main.js            77891c8cd0c92c7cbd4308ba1a79f579170b02f3fed7e2749a39906db2a02ac7
 5492             spawn.js           fdd6367e1ad33a04f235c02fa0fbeeff81df1ded2dfeac6571fb7236da25497d
-9384             util.js            0315d568296484e20f91f97e07faea1b1f5990ec90b0e2cb44b0b94f54d547ad
-665            package.json         9125e9ac103c352c2eb5934ef1382faa9783c34b425b2d0b9fb0ca6334bff560
+10724            util.js            bb3c21b7459ef37e54363c84a162c3c12e2fcd6b2ab1e42bd481913380e5e9ca
+665            package.json         b7f97001232d394909d4776dd232a5ecbe96c4fef833fd1b5c998ef86ea4cacf
                src/                                                                                 
 988              drain.iced         72d252ab54233c0dc16a94c55d8dc6b2227a03efab73ebf58a29d42919a910a0
 275              enum.iced          189271c330eb6db654879469828332cf78ea87e210d1d7275611a2e1e1fb4d15
@@ -50,7 +50,7 @@ size   exec  file                   contents
 5009             lockfile.iced      4965dea73b8739ab499704c8213f9d4c875f7271907e41ebd0ea90c79db35aa4
 308              main.iced          de11b3ce29e469a3c111c939df9f9466a5ede914febbbfcd401a8c1842741e05
 2621             spawn.iced         c8f801be169434cf2a6dd8650f12d71c3656e098d3ca6b8f3234c47b1e497997
-6749             util.iced          7182d3bee726b091b20bad5c7091e241f5c1d10606f85e66892b5c3f85b80a33
+7326             util.iced          53c7437de325cfcd4270fe61fcc12e626f242e6e2a04b2b636bdceb4d19368f3
                test/                                                                                
                  files/                                                                             
 1063               dict_merge.iced  3a42886bd8bd895beedfa82e67535e1721951aa05f7fb5257f235ec31e10dd1a
