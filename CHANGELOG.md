@@ -1,3 +1,10 @@
+## 0.1.22 (2014-09-23)
+
+Features:
+
+  - Better getopt, that now supports --foo=dog
+  - Tests for getopt
+
 ## 0.1.21 (2014-07-08)
 
 Features:
