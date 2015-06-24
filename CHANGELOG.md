@@ -1,3 +1,8 @@
+## 0.1.23 (2015-06-24)
+
+Features:
+  - tail() function
+
 ## 0.1.22 (2014-09-23)
 
 Features:

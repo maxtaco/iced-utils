@@ -8,3 +8,4 @@ exports.lockfile = require './lockfile'
 exports.enum = require './enum'
 exports.Gets = require('./gets').Gets
 exports.drain = require('./drain')
+exports.tail = require './tail'
