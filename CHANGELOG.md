@@ -1,3 +1,8 @@
+## 0.1.24 (2016-02-26)
+
+Bugfixes:
+  - Move lock into maxtaco/iced-lock
+
 ## 0.1.23 (2015-06-24)
 
 Features:
