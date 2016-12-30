@@ -2,7 +2,7 @@
 # Sample usage:
 #
 #  gets = (new Gets process.stdin).run()
-#  
+#
 #  loop
 #    await gets.gets defer err, line
 #    break unless line?
@@ -23,6 +23,7 @@ exports.Gets = class Gets
     @_include_newline = !!opts?.include_newline
     @_eof = false
     @_err = null
+    @_rem = null
     @_cbs = []
 
   #------------------------
@@ -64,6 +65,9 @@ exports.Gets = class Gets
 
   _buffer_data : (dat) ->
     dat = dat.toString 'utf8'
+    if @_rem?.length > 0
+      dat = @_rem + dat
+      @_rem = null
     while (i = dat.indexOf '\n') >= 0
       end = i
       rest = dat[(i+1)...]
@@ -75,6 +79,7 @@ exports.Gets = class Gets
       i++ unless @_include_newline
       dat = rest
       @_poke()
+    @_rem = dat
     @_maybe_pause()
 
   #------------------------
@@ -85,7 +90,7 @@ exports.Gets = class Gets
 
   #------------------------
 
-  _poke : () -> 
+  _poke : () ->
     while @_lines.length and @_cbs.length
       cb = @_cbs.shift()
       line = @_lines.shift()
