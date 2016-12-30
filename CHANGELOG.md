@@ -1,3 +1,8 @@
+## 0.1.25 (2016-12-30)
+
+Bugfixes:
+  - Fix bad buffering behavior
+
 ## 0.1.24 (2016-02-26)
 
 Bugfixes:
