@@ -1,4 +1,4 @@
-## 0.1.27 (2019-02-01_
+## 0.1.27 (2019-02-01)
 
 - Migrate (new Buffer) -> Buffer.from and Buffer.alloc
 
