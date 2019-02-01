@@ -39,7 +39,7 @@ exports.streq_secure = (x,y) ->
 
 exports.bufferify = bufferify = (s) ->
   if Buffer.isBuffer(s) then s
-  else if typeof s is 'string' then new Buffer s, 'utf8'
+  else if typeof s is 'string' then Buffer.from s, 'utf8'
   else throw new Error "Cannot convert to buffer: #{s}"
 
 #=========================================================
@@ -180,7 +180,7 @@ exports.base64u =
     b = (b + Array(5 - b.length % 4).join('='))
       .replace(/\-/g, '+') # Convert '-' to '+'
       .replace(/\_/g, '/') # Convert '_' to '/'
-    new Buffer(b, 'base64');
+    Buffer.from(b, 'base64');
 
   verify : (b) -> /^[A-Za-z0-9\-_]+$/.test b
 

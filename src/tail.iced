@@ -20,7 +20,7 @@ module.exports = tail = (fn, bytes, cb) ->
   if offset < 0
     bytes = sz
     offset = 0
-  buf = new Buffer bytes
+  buf = Buffer.alloc bytes
   await fs.read fd, buf, 0, bytes, offset, esc defer()
 
   cb null, buf

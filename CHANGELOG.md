@@ -1,3 +1,7 @@
+## 0.1.27 (2019-02-01_
+
+- Migrate (new Buffer) -> Buffer.from and Buffer.alloc
+
 ## 0.1.26 (2016-03-29)
 
 - Upgrade iced-error to ^0.0.10

@@ -20,7 +20,7 @@ read_all = (fd, cb) ->
   bufs = []
   l = 0x1000
   until err? or eof
-    b = new Buffer l
+    b = Buffer.alloc l
     await fs.read fd, b, 0, l, null, defer err, nbytes
     if err? then # noop
     else if nbytes is 0 then eof = true
@@ -75,7 +75,7 @@ class Lockfile
 
   _lock_dat : () -> 
     s = JSON.stringify [ Date.now(), @id, process.pid ]
-    new Buffer s, 'utf8'
+    Buffer.from s, 'utf8'
 
   #--------------------
 
